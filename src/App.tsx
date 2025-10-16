@@ -20,22 +20,27 @@ export default function App() {
 
   function addItem() {
     if (!name || !price) return;
-    setItems([...items, { id: Date.now(), name, price: Number(price), people: [] }]);
+    setItems([
+      ...items,
+      { id: Date.now(), name, price: Number(price), people: [] },
+    ]);
     setName("");
     setPrice("");
   }
 
   function togglePerson(itemId: number, p: string) {
-    setItems(items.map(it =>
-      it.id === itemId
-        ? {
-            ...it,
-            people: it.people.includes(p)
-              ? it.people.filter(x => x !== p)
-              : [...it.people, p],
-          }
-        : it
-    ));
+    setItems((prev) =>
+      prev.map((it) =>
+        it.id === itemId
+          ? {
+              ...it,
+              people: it.people.includes(p)
+                ? it.people.filter((x) => x !== p)
+                : [...it.people, p],
+            }
+          : it
+      )
+    );
   }
 
   function calculateSplits() {
@@ -51,41 +56,38 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1>FairShare Splitter</h1>
+      <header className="header">
+        <h1>FairShare</h1>
+        <p className="subtitle">Split bills fairly and beautifully 💸</p>
+      </header>
 
-      {/* Add people */}
-      <div style={{ marginBottom: "1rem" }}>
-        <h3>People</h3>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
+      {/* People Section */}
+      <section className="card">
+        <h2>👥 People</h2>
+        <div className="input-row">
           <input
-            placeholder="Add person"
+            placeholder="Add a person's name"
             value={person}
             onChange={(e) => setPerson(e.target.value)}
           />
           <button onClick={addPerson}>Add</button>
         </div>
-        <div style={{ marginTop: "0.5rem" }}>
+        <div className="pill-group">
+          {people.length === 0 && (
+            <p className="hint">Add people who will share the costs.</p>
+          )}
           {people.map((p) => (
-            <span
-              key={p}
-              style={{
-                display: "inline-block",
-                marginRight: "0.5rem",
-                background: "#e0e7ff",
-                padding: "0.3rem 0.6rem",
-                borderRadius: "6px",
-              }}
-            >
+            <span key={p} className="person-pill">
               {p}
             </span>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Add items */}
-      <div>
-        <h3>Items</h3>
-        <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.5rem" }}>
+      {/* Items Section */}
+      <section className="card">
+        <h2>🛒 Items</h2>
+        <div className="input-row">
           <input
             placeholder="Item name"
             value={name}
@@ -100,54 +102,74 @@ export default function App() {
           <button onClick={addItem}>Add</button>
         </div>
 
-        {items.length > 0 && (
-          <table>
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Who used it?</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((it) => (
-                <tr key={it.id}>
-                  <td>{it.name}</td>
-                  <td>${it.price.toFixed(2)}</td>
-                  <td>
-                    {people.map((p) => (
-                      <label key={p} style={{ marginRight: "0.5rem" }}>
-                        <input
-                          type="checkbox"
-                          checked={it.people.includes(p)}
-                          onChange={() => togglePerson(it.id, p)}
-                        />{" "}
-                        {p}
-                      </label>
-                    ))}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {items.length === 0 && (
+          <p className="hint">Add some items to start splitting.</p>
         )}
-      </div>
 
+        {items.length > 0 && (
+          <div className="table-wrapper">
+            <table className="styled-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Price</th>
+                  <th>Who used it?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((it) => (
+                  <tr key={it.id}>
+                    <td>{it.name}</td>
+                    <td>${it.price.toFixed(2)}</td>
+                    <td>
+                      {people.map((p) => (
+                        <label key={p} className="checkbox-chip">
+                          <input
+                            type="checkbox"
+                            checked={it.people.includes(p)}
+                            onChange={() => togglePerson(it.id, p)}
+                          />
+                          {p}
+                        </label>
+                      ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      {/* Calculate Split */}
       {items.length > 0 && (
-        <div style={{ marginTop: "1rem" }}>
-          <button onClick={calculateSplits}>Calculate Split</button>
+        <div className="center">
+          <button className="big-btn" onClick={calculateSplits}>
+            💰 Calculate Split
+          </button>
         </div>
       )}
 
+      {/* Results */}
       {result && (
-        <div style={{ marginTop: "1rem" }}>
-          <h3>Split Results</h3>
-          <ul>
+        <div className="results-card">
+          <h3>💵 Split Results</h3>
+          <ul className="result-list">
             {Object.entries(result).map(([p, amt]) => (
-              <li key={p}>
-                {p}: ${amt.toFixed(2)}
+              <li key={p} className="result-item">
+                <span className="result-name">{p}</span>
+                <span className="result-amount">${amt.toFixed(2)}</span>
               </li>
             ))}
+            <li className="result-item total-line">
+              <span className="result-name">Total</span>
+              <span className="result-amount">
+                $
+                {Object.values(result)
+                  .reduce((a, b) => a + b, 0)
+                  .toFixed(2)}
+              </span>
+            </li>
           </ul>
         </div>
       )}

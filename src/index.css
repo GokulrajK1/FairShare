@@ -1,48 +1,230 @@
+/* Global Layout */
 body {
-  font-family: system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
   margin: 0;
-  background-color: #f9fafb;
+  color: #1e293b;
 }
 
 .container {
-  max-width: 700px;
+  max-width: 800px;
   margin: 2rem auto;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 h1 {
-  text-align: center;
   color: #2563eb;
+  margin: 0;
+  font-size: 2.2rem;
 }
 
-input, button, select {
-  padding: 0.5rem;
+.subtitle {
+  color: #64748b;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  margin-top: 0.3rem;
 }
 
+/* Cards */
+.card {
+  background: #f9fafb;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.card h2 {
+  color: #1d4ed8;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Inputs */
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  transition: 0.2s border-color;
+}
+
+input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Buttons */
 button {
-  background: #2563eb;
+  padding: 0.6rem 1rem;
+  background-color: #2563eb;
   color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  background: #1e40af;
+  background-color: #1e40af;
+  transform: scale(1.02);
 }
 
-table {
+.big-btn {
+  font-size: 1.1rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Pills */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.person-pill {
+  background-color: #e0e7ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  color: #1e3a8a;
+  font-weight: 500;
+}
+
+.hint {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.styled-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
 }
 
-th, td {
-  padding: 0.5rem;
+.styled-table th,
+.styled-table td {
+  padding: 0.6rem 0.75rem;
   border-bottom: 1px solid #e5e7eb;
+}
+
+.styled-table th {
+  background-color: #f1f5f9;
+  color: #334155;
+  font-weight: 600;
   text-align: left;
+}
+
+.styled-table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Checkbox chips */
+.checkbox-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 0.35rem 0.6rem;
+  margin: 2px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.checkbox-chip input {
+  accent-color: #2563eb;
+}
+
+/* Results */
+.results-card {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.4s ease-in;
+}
+
+.results-card h3 {
+  color: #1d4ed8;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.result-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-item {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin: 0.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.result-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.result-name {
+  font-weight: 600;
+  color: #334155;
+}
+
+.result-amount {
+  font-weight: 700;
+  color: #1d4ed8;
+}
+
+.total-line {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
