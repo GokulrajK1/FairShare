@@ -118,49 +118,119 @@ button:hover {
   font-size: 0.9rem;
 }
 
-/* Table */
+/* ---------- Enhanced Item Table (Blue Theme) ---------- */
 .table-wrapper {
+  margin-top: 1.2rem;
   overflow-x: auto;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f8faff, #eef3ff);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+  transition: all 0.2s ease;
 }
 
 .styled-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 14px;
+  font-size: 0.96rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
 }
 
-.styled-table th,
-.styled-table td {
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid #e5e7eb;
+.styled-table thead {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
 }
 
 .styled-table th {
-  background-color: #f1f5f9;
-  color: #334155;
-  font-weight: 600;
   text-align: left;
+  padding: 14px 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 0.95rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-.styled-table tr:hover {
-  background-color: #f8fafc;
+.styled-table tbody tr {
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-/* Checkbox chips */
+.styled-table tbody tr:nth-child(even) {
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.styled-table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.styled-table tbody tr:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.25);
+  transform: scale(1.004);
+}
+
+.styled-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.15);
+  vertical-align: middle;
+}
+
+.styled-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- Editable Inputs ---------- */
+.editable-input {
+  width: 100%;
+  border: 1.5px solid #d0d9ff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  background: #f8faff;
+  transition: border 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.editable-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+  background-color: #ffffff;
+}
+
+/* ---------- Checkbox Chips ---------- */
 .checkbox-chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  background: #f1f5f9;
-  padding: 0.35rem 0.6rem;
-  margin: 2px;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  gap: 6px;
+  background-color: rgba(226, 232, 255, 0.9);
+  border-radius: 20px;
+  padding: 5px 12px;
+  margin: 4px;
+  font-size: 0.85rem;
   cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  color: #1e3a8a;
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+.checkbox-chip:hover {
+  background-color: rgba(219, 234, 254, 1);
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.2);
 }
 
 .checkbox-chip input {
   accent-color: #2563eb;
+  transform: scale(1.1);
 }
+
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
 
 /* Results */
 .results-card {
@@ -228,3 +298,144 @@ button:hover {
     transform: translateY(0);
   }
 }
+
+/* ---------- Receipt Upload Styling ---------- */
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.upload-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-btn:hover {
+  background-color: #1e40af;
+  transform: scale(1.02);
+}
+
+.upload-btn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.success-text {
+  color: #16a34a;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.styled-table input.editable-input {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 5px 8px;
+  width: 90%;
+  transition: box-shadow 0.1s, border 0.1s;
+}
+
+.styled-table input.editable-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+
+.delete-cell {
+  text-align: center;
+  width: 50px;
+}
+
+.delete-btn {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.25);
+  transform: scale(1.05);
+}
+
+/* ---------- Person Pills Delete Button ---------- */
+.person-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef3ff;
+  border-radius: 20px;
+  padding: 6px 10px;
+  margin: 4px;
+  font-size: 0.9rem;
+  color: #1e3a8a;
+}
+
+.small-delete {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s, transform 0.1s;
+}
+
+.small-delete:hover {
+  color: #b91c1c;
+  transform: scale(1.2);
+}
+
+/* ---------- Clear Button ---------- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-btn {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.clear-btn:hover {
+  background: rgba(37, 99, 235, 0.2);
+  transform: scale(1.03);
+}
+
